@@ -1,0 +1,64 @@
+body {
+    background-color: #f9f8fc;
+}
+
+#backBtn {
+    border-width: 1px;
+    border-radius: 10px;
+    height: 35px;
+    width: 100px;
+}
+
+.logoTitleOne {
+    position: absolute;
+    top: -25px;
+    right: 5px;
+    font-family: "Work Sans" ;
+    font-size: 30px;
+    color: rgb(134, 116, 150);
+}
+
+.logoTitleTwo {
+    position: absolute;
+    top: 5px;
+    right: 15px;
+    font-family: "Work Sans" ;
+    font-size: 30px;
+    color: rgb(134, 116, 150);
+}
+
+.adminTitle {
+    text-align: center;
+    font-family: "Work Sans" ;
+    font-size: 60px;
+    color: rgb(134, 116, 150);
+}
+
+br {
+    -webkit-user-select: none; /* Safari */        
+    -moz-user-select: none; /* Firefox */
+    -ms-user-select: none; /* IE10+/Edge */
+    user-select: none; /* Standard */
+}
+
+#viewAcctsBtn {
+    border-width: 1px;
+    border-radius: 10px;
+    height: 35px;
+    width: 150px;
+}
+
+.viewAccountsBtn {
+    text-align: center;
+}
+
+#viewLtsBtn {
+    border-width: 1px;
+    border-radius: 10px;
+    height: 35px;
+    width: 150px;
+}
+
+.viewLocationsBtn {
+    text-align: center;
+}
