@@ -1,0 +1,10 @@
+body {
+    background-color: #f9f8fc;
+}
+
+.title {
+    text-align: center;
+    font-family: "Work Sans" ;
+    font-size: 50px;
+    color: rgb(134, 116, 150);
+}

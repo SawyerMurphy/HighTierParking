@@ -1,44 +1,44 @@
 <!DOCTYPE html>
-<html>
 <html lang="en">
 
-<head>
-<title>High Tier Parking</title>
-</head>
-<body>
+  <head>
+    <title>High Tier Parking</title>
+    <link href = "login.css" rel = "stylesheet" type = "text/css">
+  </head>
+  <body>
 
-<h1 style="text-align:center;">High Tier Parking</h1>
+  <h1 class="title">High Tier <br> Parking</h1>
 
-<form name=reg action="action_page.php" >
-  <div class="container">
-    <h1>Login</h1>
-    <hr>
+  <form name=reg action="action_page.php" >
+    <div class="container">
+      <h1>Login</h1>
+      <hr>
 
-    <label for="email"><b>Email</b></label>
-    <input type="text" placeholder="Enter Email" name="email" id="email" required>
+      <label for="email"><b>Email</b></label>
+      <input type="text" placeholder="Enter Email" name="email" id="email" required>
 
-    <label for="psw"><b>Password</b></label>
-    <input type="password" placeholder="Enter Password" name="psw" id="psw" required>
+      <label for="psw"><b>Password</b></label>
+      <input type="password" placeholder="Enter Password" name="psw" id="psw" required>
 
-    
-    <button type="login" class="loginbtn">Login</button>
-    <hr>
+      
+      <button type="login" class="loginbtn">Login</button>
+      <hr>
 
-    
-  </div>
+      
+    </div>
 
-  <div class="container signup">
-    <p>Don't have an account? <a href="#">Sign Up</a>.</p>
-  </div>
-</form>
-</body>
+    <div class="container signup">
+      <p>Don't have an account? <a href="#">Sign Up</a>.</p>
+    </div>
+  </form>
+  </body>
 </html>
 <script>
-function validateForm() {
-  var x = document.forms["reg"]["email"].value;
-  if (x == "") {
-    alert("Email must be filled out");
-    return false;
+  function validateForm() {
+    var x = document.forms["reg"]["email"].value;
+    if (x == "") {
+      alert("Email must be filled out");
+      return false;
+    }
   }
-}
 </script>
