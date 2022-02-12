@@ -5,6 +5,48 @@ body {
 .title {
     text-align: center;
     font-family: "Work Sans" ;
-    font-size: 50px;
+    font-size: 60px;
     color: rgb(134, 116, 150);
+}
+
+#emailAddInput {
+    border: 0;
+    background-color: #d2ceee ; 
+    border-radius: 10px;
+    height: 35px ;
+    width: 250px;
+}
+
+.emailAddress {
+    text-align: center;
+}
+
+#passwordInput {
+    border: 0;
+    background-color: #d2ceee ; 
+    border-radius: 10px;
+    height: 35px ;
+    width: 250px;
+}
+
+.password {
+    text-align: center;
+}
+
+#loginBtn {
+    border: 0;
+    border-radius: 10px;
+    height: 35px;
+    width: 100px;
+}
+
+.loginBtn {
+    text-align: center;
+}
+
+br {
+    -webkit-user-select: none; /* Safari */        
+    -moz-user-select: none; /* Firefox */
+    -ms-user-select: none; /* IE10+/Edge */
+    user-select: none; /* Standard */
 }
