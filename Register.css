@@ -1,0 +1,118 @@
+body {
+    background-color: #f9f8fc;
+}
+
+#backBtn {
+    border-width: 1px;
+    border-radius: 10px;
+    height: 35px;
+    width: 100px;
+}
+
+.logoTitleOne {
+    position: absolute;
+    top: -25px;
+    right: 5px;
+    font-family: "Work Sans" ;
+    font-size: 30px;
+    color: rgb(134, 116, 150);
+}
+
+.logoTitleTwo {
+    position: absolute;
+    top: 5px;
+    right: 15px;
+    font-family: "Work Sans" ;
+    font-size: 30px;
+    color: rgb(134, 116, 150);
+}
+
+.registerTitle {
+    text-align: center;
+    font-family: "Work Sans" ;
+    font-size: 60px;
+    color: rgb(134, 116, 150);
+}
+
+br {
+    -webkit-user-select: none; /* Safari */        
+    -moz-user-select: none; /* Firefox */
+    -ms-user-select: none; /* IE10+/Edge */
+    user-select: none; /* Standard */
+}
+
+#regEmailAddInput {
+    border: 0;
+    background-color: #d2ceee ; 
+    border-radius: 10px;
+    height: 35px ;
+    width: 250px;
+}
+
+.registerEmailAddress {
+    text-align: center;
+}
+
+#regFirstNameInput {
+    border: 0;
+    background-color: #d2ceee ; 
+    border-radius: 10px;
+    height: 35px ;
+    width: 250px;
+}
+
+.registerFirstName {
+    text-align: center;
+}
+
+#regLastNameInput {
+    border: 0;
+    background-color: #d2ceee ; 
+    border-radius: 10px;
+    height: 35px ;
+    width: 250px;
+}
+
+.registerLastName {
+    text-align: center;
+}
+
+#regPasswordInput {
+    border: 0;
+    background-color: #d2ceee ; 
+    border-radius: 10px;
+    height: 35px ;
+    width: 250px;
+}
+
+.registerPassword {
+    text-align: center;
+}
+
+#regConfirmPasswordInput {
+    border: 0;
+    background-color: #d2ceee ; 
+    border-radius: 10px;
+    height: 35px ;
+    width: 250px;
+}
+
+.registerConfirmPassword {
+    text-align: center;
+}
+
+#regBtn {
+    border-width: 1px;
+    border-radius: 10px;
+    height: 35px;
+    width: 100px;
+}
+
+.registerBtn {
+    text-align: center;
+}
+
+::placeholder {
+    font-family: "Work Sans" ;
+    font-size: 18px;
+}

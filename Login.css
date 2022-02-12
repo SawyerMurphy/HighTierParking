@@ -2,14 +2,14 @@ body {
     background-color: #f9f8fc;
 }
 
-.title {
+.loginTitle {
     text-align: center;
     font-family: "Work Sans" ;
     font-size: 60px;
     color: rgb(134, 116, 150);
 }
 
-#emailAddInput {
+#logEmailAddInput {
     border: 0;
     background-color: #d2ceee ; 
     border-radius: 10px;
@@ -17,11 +17,11 @@ body {
     width: 250px;
 }
 
-.emailAddress {
+.loginEmailAddress {
     text-align: center;
 }
 
-#passwordInput {
+#logPasswordInput {
     border: 0;
     background-color: #d2ceee ; 
     border-radius: 10px;
@@ -29,12 +29,12 @@ body {
     width: 250px;
 }
 
-.password {
+.loginPassword {
     text-align: center;
 }
 
 #loginBtn {
-    border: 0;
+    border-width: 1px;
     border-radius: 10px;
     height: 35px;
     width: 100px;
@@ -49,4 +49,21 @@ br {
     -moz-user-select: none; /* Firefox */
     -ms-user-select: none; /* IE10+/Edge */
     user-select: none; /* Standard */
+}
+
+.clickableRegister {
+    text-align: center;
+}
+
+.clickableGuest {
+    text-align: center;
+}
+
+a {
+    color: rgb(134, 116, 150);
+}
+
+::placeholder {
+    font-family: "Work Sans" ;
+    font-size: 18px;
 }
