@@ -1,0 +1,68 @@
+body {
+    background-color: #f9f8fc;
+}
+
+#backBtn {
+    border-width: 1px;
+    border-radius: 10px;
+    height: 35px;
+    width: 100px;
+}
+
+.logoTitleOne {
+    position: absolute;
+    top: -25px;
+    right: 5px;
+    font-family: "Work Sans" ;
+    font-size: 30px;
+    color: rgb(134, 116, 150);
+}
+
+.logoTitleTwo {
+    position: absolute;
+    top: 5px;
+    right: 15px;
+    font-family: "Work Sans" ;
+    font-size: 30px;
+    color: rgb(134, 116, 150);
+}
+
+.accountInfoTitle {
+    text-align: center;
+    font-family: "Work Sans" ;
+    font-size: 60px;
+    color: rgb(134, 116, 150);
+}
+
+#licensePlateNo {
+    border: 0;
+    background-color: #d2ceee ; 
+    border-radius: 10px;
+    height: 35px ;
+    width: 200px;
+    margin-left: 50px ;
+}
+
+#saveBtn {
+    border-width: 1px;
+    border-radius: 10px;
+    height: 35px;
+    width: 100px;
+    color: white;
+    background-color: green;
+}
+
+.saveBtn {
+    text-align: center;
+}
+
+#cancelBtn {
+    border-width: 1px;
+    border-radius: 10px;
+    height: 35px;
+    width: 100px;
+}
+
+.cancelBtn {
+    text-align: center;
+}
