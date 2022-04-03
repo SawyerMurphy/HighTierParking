@@ -31,13 +31,65 @@
             <div class="userLicenseNo" id="licenseNo">[LICENSE NUMBER HERE]</div>
             <br>
         </div>
+        
         <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
         <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
-        <script type=module src="https://www.gstatic.com/firebasejs/9.6.10/firebase-auth.js"></script>
-        <script src="AccountInfo.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-database.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
+        <!--<script src="AccountInfo.js"></script>-->
         <script>
+            src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js";
+            src="https://www.gstatic.com/firebasejs/9.6.10/firebase-auth.js";
+            const firebaseConfig = {
+                apiKey: "AIzaSyCIp4TEX0_gEB1bliF3RYdpBwXPBl7GBnY",
+                authDomain: "hightierparking2.firebaseapp.com",
+                databaseURL: "https://hightierparking2-default-rtdb.firebaseio.com",
+                projectId: "hightierparking2",
+                storageBucket: "hightierparking2.appspot.com",
+                messagingSenderId: "302319328733",
+                appId: "1:302319328733:web:427140dc9c7a50fa77ea34",
+                measurementId: "G-DKKY5VYY73"
+            };
+            
 
+            firebase.initializeApp(firebaseConfig);
+            var db = firebase.firestore();
+            var database = firebase.database();
+            var auth = firebase.auth();
+            
+
+            function getData(){
+                //var docRef = db.collection("users").doc("Email", "==", "wasinasary@gmail.com");
+
+                db.collection("user").where("Email", "==", "wasinasary@gmail.com")
+                .get()
+                .then((querySnapshot) => {
+                    
+                    querySnapshot.forEach((doc) => {
+                        // doc.data() is never undefined for query doc snapshots
+                        console.log(doc.id, " => ", doc.data());
+                        var key=doc.id;
+                        //var childData=chileSnapshot.val();
+                        //document.getElementById("data").innerHTML=childData["FirstName"] + "," + childData["LastName"];
+                    });
+                })
+                .catch((error) => {
+                    console.log("Error getting documents: ", error);
+                });
+                
+            /*    docRef.get().once('value',function(snapshot){
+                    snapshot.forEach(function(childSnapshot){
+                        var childKey=childSnapshot.key;
+                        var childData=chileSnapshot.val();
+                        document.getElementById("data").innerHTML=childData["FirstName"] + "," + childData["LastName"];
+                    })
+                })
+            }*/
+                
+            }    
+            getData();
         </script>
+        <p id ="data"></p>
     </body>
 </html>
     
