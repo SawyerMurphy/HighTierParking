@@ -21,15 +21,45 @@
         </div>
         <h1 class="accountInfoTitle">Account Information</h1>
         <br> <br>
-        <div class="accountInformation">
-            <div class="userFirstName" id="firstName">[FIRST NAME HERE]</div>
-            <br>
-            <div class="userLastName" id="lastName">[LAST NAME HERE]</div>
-            <br>
-            <div class="userEmailAddress" id="emailAddress">[EMAIL ADDRESS HERE]</div>
-            <br>
-            <div class="userLicenseNo" id="licenseNo">[LICENSE NUMBER HERE]</div>
-            <br>
+        <div class="two-col">
+            <form name=reg action="action_page.php" >
+                <div class="col1">
+                    <div class="userFirstName">
+                        <input type="text" id="firstName" placeholder="First Name">
+                      </div> <br>
+                      <div class="userLastName">
+                        <input type="text" id="lastName" placeholder="Last Name">
+                      </div> <br>
+                      <div class="userEmailAddress">
+                        <input type="text" id="emailAddress" placeholder="Email Address">
+                      </div> <br> 
+                      <div class="address">
+                         <input type="text" id="address" placeholder="Address">
+                      </div> <br>
+                </div>
+            </form>
+            
+                <div class="col2">
+                    <div class="userLicenseNo">
+                        <input type="text" id="licenseNo" placeholder="License Number">
+                    </div> <br>
+                    <button class="plus1" id="p1" onclick="location.href='addPaymentMethod.htm'">+</button> 
+                    <br> <br>
+                    <div class="paymentMethods">
+                        <input type="text" id="paymentMds" placeholder="Payment Method">
+                    </div> <br>
+                    <button class="plus2" id="p2" onclick="location.href='addLicensePlate.htm'">+</button> <br>
+                </div>   
+          
+        </div> <br> <br>
+        <div class="saveBtn">
+            <button type="button" id="saveBtn" onclick="">Save</button>
+        </div> <br>
+        <div class="cancelBtn">
+            <button type="button" id="cancelBtn" onclick="">Cancel</button>
+        </div> <br>
+        <div class="viewDataBtn">
+            <button type="button" id="viewDataBtn" onclick="location.href='accountData.htm'">View Data</button>
         </div>
         
         <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>

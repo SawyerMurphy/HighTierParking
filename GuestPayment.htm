@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.js" integrity="sha512-0XDfGxFliYJPFrideYOoxdgNIvrwGTLnmK20xZbCAvPfLGQMzHUsaqZK8ZoH+luXGRxTrS46+Aq400nCnAT0/w==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<script src="scripts.js"></script>
+    <head>
+        <title>High Tier Parking</title>
+        <link href = "GuestPayment.css" rel = "stylesheet" type = "text/css">
+    </head>
+
+    <body>
+        <div class="backBtn">
+            <button type="button" id="backBtn" onclick="location.href='GuestInfo.htm'">Back</button>
+        </div>
+
+        <div class="logoTitleOne">
+            <p>High Tier</p>
+        </div>
+
+        <div class="logoTitleTwo">
+            <p>Parking</p>
+        </div>
+
+        <h1 class="title">Pay Your Parking Fees</h1>
+        <br> <br>
+
+        <form name=payment action="action_page.php" >
+            <div class = "payment">
+            <h3>Payment Information</h3>
+            <div class="cardName">
+                Name On Card<br> <input type="text" id="cardNameInput"  placeholder="Jane Doe">
+            </div> <br>
+            <div class="cardNumber">
+                Card Number <br> <input type="text" id="cardNumberInput" placeholder="1234 5678 9012 3456" >
+            </div> <br>
+            <div class="CVC">
+                CVC <br> <input type="text" id="cvcInput" placeholder="123">
+            </div> <br>
+            <div class="expiryDate">
+                Expiry Date <br><input type="text" id="date" placeholder="MM/YY">
+            </div> <br></div>
+
+            <div class = "billing">
+            <h3>Billing Information</h3>
+            <div class="addy">
+                Street Address<br> <input type="text" id="addyInput"  placeholder="123 Placeholder Street">
+            </div> <br>
+            <div class="City">
+                Card Number <br> <input type="text" id="cityInput" placeholder="Placeholder City" >
+            </div> <br>
+            <div class="Postal">
+                Postal Code <br> <input type="text" id="postalInput" placeholder="XXX XXX">
+            </div> <br>
+
+            <h3>We Email Receipts</h3>
+            <div class="registerEmailAddress">
+                Email Address<input type="text" id="reciptemailInput" placeholder="xxx@xxx.com">
+              </div> <br>
+        </form></div>
+
+    <div class = "shilling">*For additional features and future convenience, we reccomend you create an account*</div>
+        <br> 
+        <br>
+    <div class = "buttons">
+
+        <div class="createBtn">
+            <button type="button" id="createBtn" onclick="location.href='Register.htm'">Create an account</button>
+        </div>  
+
+        <div class="continueBtn">
+            <button type="button" id="contBtn" > Continue </button>
+        </div>
+    </div>
+    </body>

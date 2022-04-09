@@ -47,3 +47,120 @@ br {
     font-size: 18px;
     color: rgb(134, 116, 150);
 }
+
+.two-col{
+    overflow: hidden;
+}
+
+.two-col .col1,
+.two-col .col2 {
+    width: 35%;
+}
+
+.col1 {
+    float: left;
+    margin-left: 50px;
+}
+
+.col2 {
+    float: right;
+}
+
+#firstName {
+    border: 0;
+    background-color: #d2ceee ; 
+    border-radius: 10px;
+    height: 35px ;
+    width: 200px;
+}
+
+#lastName {
+    border: 0;
+    background-color: #d2ceee ; 
+    border-radius: 10px;
+    height: 35px ;
+    width: 200px;
+}
+
+#emailAddress {
+    border: 0;
+    background-color: #d2ceee ; 
+    border-radius: 10px;
+    height: 35px ;
+    width: 200px;
+}
+
+#licenseNo {
+    border: 0;
+    background-color: #d2ceee ; 
+    border-radius: 10px;
+    height: 35px ;
+    width: 200px;
+}
+
+#address {
+    border: 0;
+    background-color: #d2ceee ; 
+    border-radius: 10px;
+    height: 35px ;
+    width: 200px;
+}
+
+.plus1 {
+    border: 0;
+    background-color: #d2ceee ; 
+    border-radius: 10px;
+    height: 35px ;
+    width: 35px;
+}
+
+#paymentMds {
+    border: 0;
+    background-color: #d2ceee ; 
+    border-radius: 10px;
+    height: 35px ;
+    width: 200px;
+}
+
+.plus2 {
+    border: 0;
+    background-color: #d2ceee ; 
+    border-radius: 10px;
+    height: 35px ;
+    width: 35px;
+}
+
+#saveBtn {
+    border-width: 1px;
+    border-radius: 10px;
+    height: 35px;
+    width: 100px;
+    color: white;
+    background-color: green;
+}
+
+.saveBtn {
+    text-align: center;
+}
+
+#cancelBtn {
+    border-width: 1px;
+    border-radius: 10px;
+    height: 35px;
+    width: 100px;
+}
+
+.cancelBtn {
+    text-align: center;
+}
+
+#viewDataBtn {
+    border-width: 1px;
+    border-radius: 10px;
+    height: 35px;
+    width: 100px;
+}
+
+.viewDataBtn {
+    text-align: center;
+}

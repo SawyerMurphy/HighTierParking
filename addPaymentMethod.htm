@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <title>High Tier Parking</title>
+    <link href = "addPaymentMethod.css" rel = "stylesheet" type = "text/css">
+  </head>
+  <body>
+
+    <div class="backBtn">
+        <button type="button" id="backBtn" onclick="location.href='AccountInfo.htm'">Back</button>
+    </div>
+    <div class="logoTitleOne">
+        <p>High Tier</p>
+    </div>
+    <div class="logoTitleTwo">
+        <p>Parking</p>
+    </div>
+    <h1 class="accountInfoTitle">Add Payment Method</h1>
+    <br> <br>
+    <form name=reg action="action_page.php">
+        <div class="creditCardNo">
+            <input type="text" id="creditCardNo" placeholder="Credit Card No.">
+        </div> <br>
+        <div class="cardCode">
+            <input type="text" id="cardCode" placeholder="Credit Card Code">
+        </div> <br>
+        <div class="expirationDate">
+            <input type="date" id="expirationDate">
+        </div> <br> <br>
+        <div class="saveBtn">
+            <button type="button" id="saveBtn" onclick="">Save</button>
+        </div> <br>
+        <div class="cancelBtn">
+            <button type="button" id="cancelBtn" onclick="">Cancel</button>
+        </div> <br>
+    </form>
+  </body>
+</html>
