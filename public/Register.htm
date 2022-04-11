@@ -6,10 +6,11 @@
     <link href = "Register.css" rel = "stylesheet" type = "text/css">
   </head>
   <body>
-
-    <div class="backBtn">
-      <button type="button" id="backBtn" onclick="location.href='Login.htm'">Back</button>
-    </div>
+    <form name="backBtn">
+      <div class="backBtn">
+        <button type="button" id="backBtn" onclick="location.href='Login.htm'">Back</button>
+      </div>
+    </form>
     <div class="logoTitleOne">
       <p>High Tier</p>
     </div>
@@ -61,6 +62,17 @@
     firebase.initializeApp(firebaseConfig);
     var db = firebase.firestore();
     var database =firebase.database();
+    var auth =firebase.auth();
+
+    auth.onAuthStateChanged(user=>{
+      if(user){
+        console.log('user logged in: ', user)
+      }else{
+        console.log('user logged out')
+      }
+    })
+    
+    const regForm = document.querySelector('#reg');
     document.getElementById("reg").addEventListener("submit",submitform);
     function submitform(e) {
       e.preventDefault();
@@ -71,39 +83,66 @@
       var lastName = getInputVal('regLastNameInput');
       var email = getInputVal('regEmailAddInput');
       var pswd = getInputVal('regPasswordInput');
-      
-      //saveAccount(firstName, lastName, email, pswd);
-      firebase.auth().createUserWithEmailAndPassword(email, pswd)
-      .then((userCredential) => {
-    // Signed in 
-      var user = userCredential.user;
-    // ...
-    })
-    .catch((error) => {
-    var errorCode = error.code;
-    var errorMessage = error.message;
-    // ..
-    });
-    /*
-      db.collection("user").add({
+      var userID;
+      //const email = signupForm['signup-email'].value;
+      //const password = signupForm['signup-password'].value;
+
+  // sign up the user
+      auth.createUserWithEmailAndPassword(email, pswd).then(cred => {
+      console.log(cred.user);
+      userID=firebase.auth().currentUser.uid;
+      db.collection("users").doc(userID).set({
         FirstName: firstName,
         LastName: lastName,
         Email: email,
-        Password: pswd
+        LicensePlate: "No License Plate Added",
+        PaymentCard: "No Payment Method Added",
+        LocationParked: firebase.firestore.FieldValue.arrayUnion('Ottawa'),
+        TimeIn: firebase.firestore.FieldValue.arrayUnion('0:00'),
+        TimeOut:firebase.firestore.FieldValue.arrayUnion('0:00'),
+        ElapsedTime: firebase.firestore.FieldValue.arrayUnion('0'),
+        amountDueEachParkingLocation: firebase.firestore.FieldValue.arrayUnion('0'),
+        counter: 0,
+        BalanceDue: 0,
+        Date: firebase.firestore.FieldValue.arrayUnion('2022-04-03')
+
+
+
+
       })
-      .then((docRef) => {
-        console.log("Document written with ID: ", docRef.id);
-      })
-      .catch((error) => {
-        console.error("Error adding document: ", error);
-      });
+      setTimeout(()=>location.href='AccountInfo.htm',2000);
+
+      
+    });
+      
+      //saveAccount(firstName, lastName, email, pswd);
+      
+      
+     
+    
     }
-    */
     function getInputVal(id){
       return document.getElementById(id).value;
     }
 
-  }
+    function writeData(){
+      firebase.database().ref("User").set({
+        firstName: getInputVal('regFirstNameInput').value,
+        lastName: getInputVal("regLastFirstNameInput").value,
+        email: getInputVal("nameEmailAddInput").value,
+        pswd: getInputVal("regPasswordInput").value
+        //lastName: dofirstName: document.getInp("nameField").value
+        
+
+      });
+    }
+
+    function writeUserData(user) {
+      firebase.database().ref('users/' + user.uid).set(user).catch(error => {
+        console.log(error.message)
+      });
+    }
+
 
   </script>
 

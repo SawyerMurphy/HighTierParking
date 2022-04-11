@@ -16,13 +16,74 @@
             <p>Parking</p>
         </div>
         <h1 class="licensePlateTitle">License Plate Entry</h1>
-        <br> <br>
-        <form name=reg action="action_page.php">
+        <br>
+        <form name=guest id="guest" >
             <div class="licensePlateNo">
                 <input type="text" id="licensePlateNoInput" placeholder="License Plate No.">
-            </div> <br> <br>
+            </div> <br>
             <div class="continueBtn">
-                <button type="button" id="contBtn" onclick="location.href='GuestInfo.htm'">Continue</button>
+                <button type="submit" id="contBtn" >Continue</button>
               </div> <br>
         </form>
+        
+        <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-database.js"></script>
+
+        <script>
+            src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js";
+            src="https://www.gstatic.com/firebasejs/9.6.10/firebase-auth.js";
+            const firebaseConfig = {
+            apiKey: "AIzaSyCIp4TEX0_gEB1bliF3RYdpBwXPBl7GBnY",
+            authDomain: "hightierparking2.firebaseapp.com",
+            databaseURL: "https://hightierparking2-default-rtdb.firebaseio.com",
+            projectId: "hightierparking2",
+            storageBucket: "hightierparking2.appspot.com",
+            messagingSenderId: "302319328733",
+            appId: "1:302319328733:web:427140dc9c7a50fa77ea34",
+            measurementId: "G-DKKY5VYY73"
+            };
+            var change=false;
+
+            firebase.initializeApp(firebaseConfig);
+            var db = firebase.firestore();
+            var database =firebase.database();
+            var auth =firebase.auth();
+            var userID;
+            document.getElementById("guest").addEventListener("submit",submitform);
+            function submitform(e) {
+                e.preventDefault();
+                var licensePlate=document.getElementById('licensePlateNoInput').value;
+                console.log(licensePlate);
+
+                auth.signInAnonymously().then((userCredential) => {
+    
+                    var user = userCredential.user;
+                    var userID=firebase.auth().currentUser.uid
+                    console.log(user);
+                    db.collection("users").doc(userID).set({
+                        LicensePlate: licensePlate,
+                        TimeElapsed: "N/A",
+                        BalanceDue: 0
+                    })
+
+                })
+                
+
+                
+
+           
+                setTimeout(()=>location.href='GuestInfo.htm',3000);
+                
+            
+        
+        
+            }
+            
+        </script>
+        <script>
+            
+        </script>
     </body>
+<html>

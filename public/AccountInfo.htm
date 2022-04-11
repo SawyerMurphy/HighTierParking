@@ -11,7 +11,9 @@
     <body>
 
         <div class="backBtn">
-      <button type="button" id="backBtn" onclick="location.href='Login.htm'">Back</button>
+            <form name="logout" id="logout">
+                <button type="submit" id="backBtn" onclick="location.href='Login.htm'" >Back</button>
+            </form>    
         </div>
         <div class="logoTitleOne">
         <p>High Tier</p>
@@ -22,16 +24,16 @@
         <h1 class="accountInfoTitle">Account Information</h1>
         <br> <br>
         <div class="two-col">
-            <form name=reg action="action_page.php" >
+            <form name=reg  >
                 <div class="col1">
                     <div class="userFirstName">
-                        <input type="text" id="firstName" placeholder="First Name">
+                        <input name=userFirstName type="text" id="firstName"  placeholder= >
                       </div> <br>
                       <div class="userLastName">
-                        <input type="text" id="lastName" placeholder="Last Name">
+                        <input name=userLastName type="text" id="lastName" placeholder="Last Name">
                       </div> <br>
                       <div class="userEmailAddress">
-                        <input type="text" id="emailAddress" placeholder="Email Address">
+                        <input name=userEmail type="text" id="emailAddress" placeholder="Email Address">
                       </div> <br> 
                       <div class="address">
                          <input type="text" id="address" placeholder="Address">
@@ -41,14 +43,14 @@
             
                 <div class="col2">
                     <div class="userLicenseNo">
-                        <input type="text" id="licenseNo" placeholder="License Number">
+                        <input name=userLicenseNo type="text" id="licenseNo" placeholder="License Number">
                     </div> <br>
-                    <button class="plus1" id="p1" onclick="location.href='addPaymentMethod.htm'">+</button> 
+                    <button class="plus1" id="p1" onclick="location.href='addLicensePlate.htm'">+</button> 
                     <br> <br>
                     <div class="paymentMethods">
-                        <input type="text" id="paymentMds" placeholder="Payment Method">
+                        <input name=userPaymentMethods type="text" id="paymentMds" placeholder="Payment Method">
                     </div> <br>
-                    <button class="plus2" id="p2" onclick="location.href='addLicensePlate.htm'">+</button> <br>
+                    <button class="plus2" id="p2" onclick="location.href='addPaymentMethod.htm'">+</button> <br>
                 </div>   
           
         </div> <br> <br>
@@ -86,40 +88,54 @@
             var db = firebase.firestore();
             var database = firebase.database();
             var auth = firebase.auth();
-            
-
-            function getData(){
-                //var docRef = db.collection("users").doc("Email", "==", "wasinasary@gmail.com");
-
-                db.collection("user").where("Email", "==", "wasinasary@gmail.com")
-                .get()
-                .then((querySnapshot) => {
+            //var userID=firebase.auth().currentUser.uid;
+            auth.onAuthStateChanged(user=>{
+                //console.log(user);
+                if(user){
+                    console.log('user logged in: ',user)
+                    var userID=firebase.auth().currentUser.uid;
+                    console.log(userID);
                     
-                    querySnapshot.forEach((doc) => {
-                        // doc.data() is never undefined for query doc snapshots
-                        console.log(doc.id, " => ", doc.data());
-                        var key=doc.id;
-                        //var childData=chileSnapshot.val();
-                        //document.getElementById("data").innerHTML=childData["FirstName"] + "," + childData["LastName"];
+                    var userRef=db.collection("users").doc(userID).get().then((doc)=>{
+                        //console.log(doc.data().FirstName);
+                        document.getElementsByName('userFirstName')[0].placeholder=doc.data().FirstName;
+                        document.getElementsByName('userLastName')[0].placeholder=doc.data().LastName;
+                        document.getElementsByName('userEmail')[0].placeholder=doc.data().Email;
+                        document.getElementsByName('userLicenseNo')[0].placeholder=doc.data().LicensePlate;
+                        document.getElementsByName('userPaymentMethods')[0].placeholder=doc.data().PaymentCard;
+
+
+
+                        //var fn=doc.data().FirstName;
                     });
+                    
+                    
+
+                }
+            })
+            document.getElementById("logout").addEventListener("submit",submitform);
+            function submitform(e) {
+                e.preventDefault();
+                auth.signOut().then(() => {
+                    console.log("user has signed out");    
                 })
-                .catch((error) => {
-                    console.log("Error getting documents: ", error);
-                });
-                
-            /*    docRef.get().once('value',function(snapshot){
-                    snapshot.forEach(function(childSnapshot){
-                        var childKey=childSnapshot.key;
-                        var childData=chileSnapshot.val();
-                        document.getElementById("data").innerHTML=childData["FirstName"] + "," + childData["LastName"];
+            }
+
+            /*
+            
+            userId and Licences plate
+            ---grab the licences plate value
+            var userRef=db.collection("users").doc(userID).get().then((doc)=>{
+                        document.getElementById('location').innerText=doc.data().LocationParked;
                     })
-                })
-            }*/
-                
-            }    
-            getData();
+
+            if(excelLP== userLP ){
+                update Location Parked, timeIn and timeOut
+            }
+            */
+        
         </script>
-        <p id ="data"></p>
+        
     </body>
 </html>
     

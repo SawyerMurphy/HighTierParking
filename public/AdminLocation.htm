@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <title>High Tier Parking</title>
+        <link href = "AdminLocation.css" rel = "stylesheet" type = "text/css">
+    </head>
+    <body>
+
+        <div class="backBtn">
+        <button type="button" id="backBtn" onclick="location.href='AdminLogin.htm'">Back</button>
+        </div>
+        <div class="logoTitleOne">
+        <p>High Tier</p>
+        </div>
+        <div class="logoTitleTwo">
+        <p>Parking</p>
+        </div>
+
+        <h1 class="locationInfoTitle">Location Information</h1>
+
+        <div class="dropdown">
+            <H3>Select a location to view its data</H3>
+            <select name="location-dropdown" id="location-dropdown">
+                
+            </select>
+            <form id="View">
+                <button class=View type="submit"  id="View">View</button>
+            </form>
+        </div>
+            <div>
+            </div>
+
+        <br>
+        <br>
+
+        <div class="locationData">
+            <div class="addy" id="addy">[ADDRESS HERE]</div>
+            <br>
+            <div class="rates" id="rates">[PARKING RATES HERE]</div>
+            <br>
+            <div class="profit" id="profit">[NET PROFIT HERE]</div>
+            <br>
+            <div class="owed" id="owed">[TOTAL OUTSTADNING FEES HERE]</div>
+            <br>
+        </div>
+
+        
+        <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-database.js"></script>
+
+
+        <script>
+            src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js";
+            src="https://www.gstatic.com/firebasejs/9.6.10/firebase-auth.js";
+            const firebaseConfig = {
+            apiKey: "AIzaSyCIp4TEX0_gEB1bliF3RYdpBwXPBl7GBnY",
+            authDomain: "hightierparking2.firebaseapp.com",
+            databaseURL: "https://hightierparking2-default-rtdb.firebaseio.com",
+            projectId: "hightierparking2",
+            storageBucket: "hightierparking2.appspot.com",
+            messagingSenderId: "302319328733",
+            appId: "1:302319328733:web:427140dc9c7a50fa77ea34",
+            measurementId: "G-DKKY5VYY73"
+            };
+
+            firebase.initializeApp(firebaseConfig);
+            var db = firebase.firestore();
+            var database =firebase.database();
+            var auth =firebase.auth();
+            var locations=[];
+            var parkingRates=[];
+            var profits=[];
+            var address=[];
+            var owedFees=[];
+            var admin={};
+            var dd={}
+            var userID;
+            //auth.onAuthStateChanged(user=>{})
+    
+            var userRef=db.collection("users").doc('adminData').get().then((doc)=>{
+                locations=doc.data().Locations;
+                parkingRates=doc.data().Rates;
+                profits=doc.data().Profits;
+                address=doc.data().Address;
+                owedFees=doc.data().OutstandingFees;
+                var len=locations.length;
+                //console.log(len)
+                console.log(locations)
+                console.log(parkingRates)
+                console.log(address)
+
+                const select=document.getElementById('location-dropdown');
+                const adr=document.getElementById('addy');
+                const rate=document.getElementById('rates');
+                const netProfit=document.getElementById('profit');
+                const outstandingBalance=document.getElementById('owed');
+                //const sel=document.getElementById('View')
+                let dataHtml='';
+                let addy='';
+                let rates='';
+                let profit='';
+                let owed='';
+                var index=[];
+                
+                for(let i=0; i<len; i++){
+                    dd.location=locations[i];
+                    dd.address=address[i];
+                    console.log(dd.location);
+                    dataHtml+=`<option value=${i}>${dd.location}</option>`;
+                    index[i]=i;
+
+                }
+                addy=`<div id=addy>Press View to see location address</div>`;
+                rates=`<div id=rates>Press View to see parking rates of location</div>`
+                profit=`<div id=profit>Press View to see profit of location</div>`
+                owed=`<div id=addy>Press View to see outstanding fees of location</div>`
+
+                adr.innerHTML=addy;
+                rate.innerHTML=rates;
+                netProfit.innerHTML=profit;
+                outstandingBalance.innerHTML=owed;
+                        
+                
+                
+
+
+                select.innerHTML=dataHtml;
+                console.log(dataHtml);
+                document.getElementById("View").addEventListener("submit",submitform);
+                function submitform(e) {
+                    e.preventDefault();
+                    console.log(index);
+                    var sel=select.value;
+                    addy=`<div id=addy>Location Address: ${address[sel]}</div>`;
+                    rates=`<div id=rates>Location Parking Rates($/h): ${parkingRates[sel]}</div>`;
+                    profit=`<div id=rates>Location Net Profit($): ${profits[sel]}</div>`;
+                    owed=`<div id=rates>Outstanding Fees($): ${owedFees[sel]}</div>`;
+
+                    console.log(address[sel]);
+                    adr.innerHTML=addy;
+                    rate.innerHTML=rates;
+                    netProfit.innerHTML=profit;
+                    outstandingBalance.innerHTML=owed;
+
+
+
+
+                }
+                
+
+
+            })
+
+            
+        
+
+            
+
+            
+            
+
+        </script>
+
+    </body>
+
+</html>
+    

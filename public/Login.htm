@@ -9,18 +9,21 @@
 
     <h1 class="loginTitle">High Tier <br> Parking</h1>
     <br> <br>
-    <form name=reg action="action_page.php" >
+    <form name=login id="login" >
       <div class="loginEmailAddress">
         <input type="text" id="logEmailAddInput" placeholder="Email Address">
       </div>
       <br>
       <div class="loginPassword">
-        <input type="text" id="logPasswordInput" placeholder="Password">
+        <input type="password" id="logPasswordInput" placeholder="Password">
       </div>
       <br> <br>
+      <form name="loginBtn" id="loginBtn">
       <div class="loginBtn">
-        <button type="button" id="loginBtn" onclick="location.href='AccountInfo.htm'">Login</button>
-      </div> <br> 
+        <button type="submit"  id="loginBtn" >Login</button> <!-- onclick="location.href='AccountInfo.htm'"-->
+      </div>
+      </form>
+      <br> 
       <div class="clickableRegister">
         <a href="Register.htm">Register</a>
       </div> <br>
@@ -28,30 +31,83 @@
         <a href="GuestInput.htm">Use as Guest</a>
       </div>
     </form>  
-  <!--<form name=reg action="action_page.php" >
-    <div class="container">
-      <h1>Login</h1>
-      <hr>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-database.js"></script>
 
-      <label for="email"><b>Email</b></label>
-      <input type="text" placeholder="Enter Email" name="email" id="email" required>
+    <script>
+    src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js";
+    src="https://www.gstatic.com/firebasejs/9.6.10/firebase-auth.js";
+    const firebaseConfig = {
+      apiKey: "AIzaSyCIp4TEX0_gEB1bliF3RYdpBwXPBl7GBnY",
+      authDomain: "hightierparking2.firebaseapp.com",
+      databaseURL: "https://hightierparking2-default-rtdb.firebaseio.com",
+      projectId: "hightierparking2",
+      storageBucket: "hightierparking2.appspot.com",
+      messagingSenderId: "302319328733",
+      appId: "1:302319328733:web:427140dc9c7a50fa77ea34",
+      measurementId: "G-DKKY5VYY73"
+    };
 
-      <label for="psw"><b>Password</b></label>
-      <input type="password" placeholder="Enter Password" name="psw" id="psw" required>
+    firebase.initializeApp(firebaseConfig);
+    var db = firebase.firestore();
+    var database =firebase.database();
+    var auth =firebase.auth();
+    
+    auth.onAuthStateChanged(user=>{
+      if(user){
+        console.log('user logged in: ', user)
+        
+      }else{
+        console.log('user logged out')
+      }
+    })
+    
+    document.getElementById("login").addEventListener("submit",submitform);
+    function submitform(e) {
+      e.preventDefault();
+      
+
+      //get values
+      
+      var email = getInputVal('logEmailAddInput');
+      console.log(email);
+      
+      var pswd = getInputVal('logPasswordInput');
+      console.log(pswd);
+      
+
+  // sign in the user
+      auth.signInWithEmailAndPassword(email, pswd).then(cred => {
+      console.log(cred.user);
+      console.log(cred.user.email);
+      if(cred.user.email=="admin@gmail.com"){
+        location.href='AdminLogin.htm'
+      }
+      else{
+        location.href='AccountInfo.htm'
+      }
+      
+      });
+
+
+      //location.href='AccountInfo.htm'
 
       
-      <button type="login" class="loginbtn">Login</button>
-      <hr>
-
-      
-    </div>
-
-    <div class="container signup">
-      <p>Don't have an account? <a href="#">Sign Up</a>.</p>
-    </div>
-  </form>-->
+    }
+    
+  
+  
+    function getInputVal(id){
+      return document.getElementById(id).value;
+    }
+  
+  
+  </script>
   </body>
 </html>
+
 <script>
   function validateForm() {
     var x = document.forms["reg"]["email"].value;
@@ -61,3 +117,5 @@
     }
   }
 </script>
+
+

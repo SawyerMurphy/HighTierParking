@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+    <head>
+        <title>High Tier Parking</title>
+        <link href = "GuestPayment.css" rel = "stylesheet" type = "text/css">
+    </head>
+
+    <body>
+        <div class="backBtn">
+            <button type="button" id="backBtn" onclick="location.href='GuestInfo.htm'">Back</button>
+        </div>
+
+        <div class="logoTitleOne">
+            <p>High Tier</p>
+        </div>
+
+        <div class="logoTitleTwo">
+            <p>Parking</p>
+        </div>
+
+        <h1 class="title">Pay Your Parking Fees</h1>
+        <br> <br>
+
+        <form name=payment id="payment">
+            <div class = "payment">
+            <h3>Payment Information</h3>
+            <div class="cardName">
+                Name On Card<br> <input type="text" id="cardNameInput"  placeholder="Jane Doe">
+            </div> <br>
+            <div class="cardNumber">
+                Card Number <br> <input type="text" id="cardNumberInput" placeholder="1234 5678 9012 3456" >
+            </div> <br>
+            <div class="CVC">
+                CVC <br> <input type="text" id="cvcInput" placeholder="123">
+            </div> <br>
+            <div class="expiryDate">
+                Expiry Date <br><input type="text" id="date" placeholder="MM/YY">
+            </div> <br></div>
+
+            <div class = "billing">
+            <h3>Billing Information</h3>
+            <div class="addy">
+                Street Address<br> <input type="text" id="addyInput"  placeholder="123 Placeholder Street">
+            </div> <br>
+            <div class="City">
+                Card Number <br> <input type="text" id="cityInput" placeholder="Placeholder City" >
+            </div> <br>
+            <div class="Postal">
+                Postal Code <br> <input type="text" id="postalInput" placeholder="XXX XXX">
+            </div> <br>
+
+            <h3>We Email Receipts</h3>
+            <div class="registerEmailAddress">
+                Email Address<input type="text" id="reciptemailInput" placeholder="xxx@xxx.com">
+              </div> <br>
+        </div>
+
+        <div class = "shilling">*For additional features and future convenience, we reccomend you create an account*</div>
+            <br> 
+            <br>
+    
+        <div class = "buttons">  
+
+            <div style="text-align: center;"class="paynowBtn">
+                <button type="submit" id="payBtn" > Pay Now </button>
+            </div>
+        </div>
+    </form>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-database.js"></script>
+
+        <script>
+            src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js";
+            src="https://www.gstatic.com/firebasejs/9.6.10/firebase-auth.js";
+            const firebaseConfig = {
+            apiKey: "AIzaSyCIp4TEX0_gEB1bliF3RYdpBwXPBl7GBnY",
+            authDomain: "hightierparking2.firebaseapp.com",
+            databaseURL: "https://hightierparking2-default-rtdb.firebaseio.com",
+            projectId: "hightierparking2",
+            storageBucket: "hightierparking2.appspot.com",
+            messagingSenderId: "302319328733",
+            appId: "1:302319328733:web:427140dc9c7a50fa77ea34",
+            measurementId: "G-DKKY5VYY73"
+            };
+            var change=false;
+
+            firebase.initializeApp(firebaseConfig);
+            var db = firebase.firestore();
+            var database =firebase.database();
+            var auth =firebase.auth();
+            auth.onAuthStateChanged(user=>{
+                //console.log(user);
+                if(user){
+                    
+                    console.log('user logged in: ',user)
+                    var userID=firebase.auth().currentUser.uid;
+                    console.log(userID);
+                    payed='0';
+   
+                    document.getElementById("payment").addEventListener("submit",submitform);
+                    function submitform(e) {
+                        e.preventDefault();
+                        var userID=firebase.auth().currentUser.uid;
+                        
+
+                        var userRef=db.collection("users").doc(userID).update({
+                            BalanceDue: payed 
+                        })
+                        
+
+                        window.alert("Your Balance Has been Payed")
+                        setTimeout(()=>location.href='GuestInfo.htm',2000);
+                
+            
+        
+        
+                    }
+
+                  
+              
+
+                }
+            })
+            
+            
+        </script>
+    </body>

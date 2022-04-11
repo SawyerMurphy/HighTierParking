@@ -27,43 +27,37 @@ body {
     color: rgb(134, 116, 150);
 }
 
-#contBtn {
-    border-width: 1px;
-    border-radius: 10px;
-    height: 35px;
-    width: 100px;
-    margin-left: 300%;
-    
-}
-
-#createBtn {
-    border-width: 1px;
-    border-radius: 10px;
-    height: 35px;
-    width: 150px;
-}
-
-
-.title {
+.locationInfoTitle {
     text-align: center;
     font-family: "Work Sans" ;
     font-size: 60px;
     color: rgb(134, 116, 150);
 }
 
-.guestInfo {
-    margin: auto;
-    width : 30%;
-    font-size: 20px;
+br {
+    -webkit-user-select: none; /* Safari */        
+    -moz-user-select: none; /* Firefox */
+    -ms-user-select: none; /* IE10+/Edge */
+    user-select: none; /* Standard */
 }
 
-.shilling {
+.locationData {
     text-align: center;
-    color: red;
+    font-family: "Work Sans" ;
+    font-size: 18px;
+    color: rgb(134, 116, 150);
 }
 
+.spots {
+    text-align: center;
+    font-family: "Work Sans" ;
+    font-size: 18px;
+    color: rgb(134, 116, 150);
+}
 
-.buttons {
-    display: inline-flex;
-    margin-left: 35%;
-  }
+.dropdown {
+    text-align: center;
+    font-family: "Work Sans" ;
+    font-size: 18px;
+    color: rgb(134, 116, 150);
+}

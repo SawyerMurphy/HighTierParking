@@ -27,43 +27,42 @@ body {
     color: rgb(134, 116, 150);
 }
 
-#contBtn {
-    border-width: 1px;
-    border-radius: 10px;
-    height: 35px;
-    width: 100px;
-    margin-left: 300%;
-    
-}
-
-#createBtn {
-    border-width: 1px;
-    border-radius: 10px;
-    height: 35px;
-    width: 150px;
-}
-
-
-.title {
+.accountInfoTitle {
     text-align: center;
     font-family: "Work Sans" ;
     font-size: 60px;
     color: rgb(134, 116, 150);
 }
 
-.guestInfo {
-    margin: auto;
-    width : 30%;
-    font-size: 20px;
+#licensePlateNo {
+    border: 0;
+    background-color: #d2ceee ; 
+    border-radius: 10px;
+    height: 35px ;
+    width: 200px;
+    margin-left: 50px ;
 }
 
-.shilling {
+#saveBtn {
+    border-width: 1px;
+    border-radius: 10px;
+    height: 35px;
+    width: 100px;
+    color: white;
+    background-color: green;
+}
+
+.saveBtn {
     text-align: center;
-    color: red;
 }
 
+#cancelBtn {
+    border-width: 1px;
+    border-radius: 10px;
+    height: 35px;
+    width: 100px;
+}
 
-.buttons {
-    display: inline-flex;
-    margin-left: 35%;
-  }
+.cancelBtn {
+    text-align: center;
+}

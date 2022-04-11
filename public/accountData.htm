@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <title>High Tier Parking</title>
+        <link href = "accountData.css" rel = "stylesheet" type = "text/css">
+    </head>
+    <body>
+
+        <div class="backBtn">
+            <button type="button" id="backBtn" onclick="location.href='AccountInfo.htm'">Back</button>
+        </div>
+        <div class="logoTitleOne">
+            <p>High Tier</p>
+        </div>
+        <div class="logoTitleTwo">
+            <p>Parking</p>
+        </div>
+        <h1 class="accountInfoTitle">Account Data</h1>
+        <table>
+            <thead>
+                <tr>
+                <th>Location</th>
+                <th>Date(YYYY-MM-DD)</th>
+                <th>Time Entered (HH:MM:SS)</th>
+                <th>Time Exited (HH:MM:SS)</th>
+                <th>Time Parked (Hours)</th>
+                <th>Amount Owed (Dollars)</th>
+                <th>License Plate No.</th>
+                </tr>
+            <!--
+            <tr>
+              <td id="location"></td>
+              <td id="date"></td>
+              <td id="timeIn"></td>
+              <td id="timeOut"></td>
+              <td id="timeParked"></td>
+              <td id="amountOwed"></td>
+              <td id="licensePlate"></td>
+            --> 
+                </tr>
+            </thead>
+            <tbody id="userDataTableBody"></tbody>
+        </table>
+        <h5 >Total Outstanding Fees(Dollars):</h5> <h5 id="BalanceDue"></h5>
+
+        <br> <br>
+
+        <div class="PayNow">
+            <form name="PayNow" id="PayNow">
+                <button type="submit" id="PayNow" onclick="">PayNow</button>
+            </form>
+        </div> <br>
+
+        <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-database.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
+        <script>
+            src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js";
+            src="https://www.gstatic.com/firebasejs/9.6.10/firebase-auth.js";
+            const firebaseConfig = {
+                apiKey: "AIzaSyCIp4TEX0_gEB1bliF3RYdpBwXPBl7GBnY",
+                authDomain: "hightierparking2.firebaseapp.com",
+                databaseURL: "https://hightierparking2-default-rtdb.firebaseio.com",
+                projectId: "hightierparking2",
+                storageBucket: "hightierparking2.appspot.com",
+                messagingSenderId: "302319328733",
+                appId: "1:302319328733:web:427140dc9c7a50fa77ea34",
+                measurementId: "G-DKKY5VYY73"
+            };
+            
+
+            firebase.initializeApp(firebaseConfig);
+            var db = firebase.firestore();
+            var database = firebase.database();
+            var auth = firebase.auth();
+            
+            auth.onAuthStateChanged(user=>{
+                //console.log(user);
+                if(user){
+                    
+                    console.log('user logged in: ',user)
+                    var userID=firebase.auth().currentUser.uid;
+                  
+              
+
+                }
+            })
+
+            document.getElementById("PayNow").addEventListener("submit",submitform);
+            function submitform(e) {
+                e.preventDefault()
+                var userID=firebase.auth().currentUser.uid;
+                var userRef=db.collection("users").doc(userID).update({
+                    BalanceDue: 0.00
+
+                })
+                var userRef=db.collection("users").doc(userID).get().then((doc)=>{
+                    document.getElementById('BalanceDue').innerText=doc.data().BalanceDue;
+                
+                })
+                console.log(userID);
+
+                    
+                   
+            
+            }
+            var userData={};
+
+            var accountData=[];
+            var totalTimesParked=0;
+            var timeParkedArray=[];
+            var locationArray=[];
+            var timeInArray=[];
+            var timeOutArray=[]
+            var dateArray=[];
+            var eachParkingArray=[]
+            var index=0;
+            var userRef=db.collection("users").get().then((snapshot)=>{
+                snapshot.forEach(doc=>{
+                    var email = doc.data().Email;
+                    var userEmail=firebase.auth().currentUser.email;
+                    if(email==userEmail){
+                        document.getElementById('BalanceDue').innerText=doc.data().BalanceDue;
+
+                        
+                        userData.amountOwed=doc.data().BalanceDue;
+                        
+                        timeParkedArray=doc.data().ElapsedTime;
+
+                        eachParkingArray=doc.data().amountDueEachParkingLocation;
+
+                        locationArray=doc.data().LocationParked;
+                        
+                        timeInArray=doc.data().TimeIn;
+
+                        timeOutArray=doc.data().TimeOut;
+                        
+                        dateArray=doc.data().Date;
+                        
+                        len=locationArray.length;
+                        const tableBody = document.getElementById('userDataTableBody');
+                        let dataHtml='';
+                        for(let i=0; i<len; i++){
+                            userData.location=locationArray[i];
+                            userData.licensePlate=doc.data().LicensePlate;
+                            userData.date=dateArray[i];
+                            userData.timeIn=timeInArray[i];
+                            userData.timeOut=timeOutArray[i];
+                            userData.timeParked=timeParkedArray[i];
+                            userData.eachParking=eachParkingArray[i];
+                            dataHtml+=`<tr><td>${userData.location}</td><td>${userData.date}</td><td>${userData.timeIn}</td><td>${userData.timeOut}</td><td>${userData.timeParked}</td><td>${userData.eachParking}</td><td>${userData.licensePlate}</td></tr>`;
+
+                            console.log(accountData[i]);
+
+                            
+
+                        }
+                        tableBody.innerHTML=dataHtml;
+
+                        //accountData[0]=data;
+
+                        //console.log(licensePlate);
+                    }
+
+                })
+             
+            })
+
+
+
+        
+        
+        </script>
+    </body>
+</html>

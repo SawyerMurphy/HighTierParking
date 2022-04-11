@@ -8,7 +8,9 @@
     <body>
 
         <div class="backBtn">
-        <button type="button" id="backBtn" onclick="location.href='Login.htm'">Back</button>
+            <form name="backBtn id=backBtn">
+                <button type="button" id="backBtn" onclick="location.href='Login.htm'">Back</button>
+            </form>
         </div>
         <div class="logoTitleOne">
         <p>High Tier</p>
@@ -19,11 +21,67 @@
         <h1 class="adminTitle">Administrative View</h1>
         <br> <br>
         <div class="viewAccountsBtn">
-            <button type="button" id="viewAcctsBtn">View Accounts</button>
+            <button type="button" id="viewAcctsBtn" onclick="location.href='AdminAccounts.htm'">View Accounts</button>
         </div> <br>
         <div class="viewLocationsBtn">
-            <button type="button" id="viewLtsBtn">View Locations</button>
+            <button type="button" id="viewLtsBtn" onclick="location.href='AdminLocation.htm'">View Locations</button>
         </div> <br>
+        <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-database.js"></script>
+
+        <script>
+            src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js";
+            src="https://www.gstatic.com/firebasejs/9.6.10/firebase-auth.js";
+            const firebaseConfig = {
+            apiKey: "AIzaSyCIp4TEX0_gEB1bliF3RYdpBwXPBl7GBnY",
+            authDomain: "hightierparking2.firebaseapp.com",
+            databaseURL: "https://hightierparking2-default-rtdb.firebaseio.com",
+            projectId: "hightierparking2",
+            storageBucket: "hightierparking2.appspot.com",
+            messagingSenderId: "302319328733",
+            appId: "1:302319328733:web:427140dc9c7a50fa77ea34",
+            measurementId: "G-DKKY5VYY73"
+            };
+
+            firebase.initializeApp(firebaseConfig);
+            var db = firebase.firestore();
+            var database =firebase.database();
+            var auth =firebase.auth();
+            
+            auth.onAuthStateChanged(user=>{
+            if(user){
+                console.log('user logged in: ', user)
+                
+            }else{
+                console.log('user logged out')
+            }
+            })
+            
+            document.getElementById("backBtn").addEventListener("submit",submitform);
+            function submitform(e) {
+                e.preventDefault();
+            
+                auth.signOut().then(() => {
+                    console.log("user has signed out");    
+                })
+            
+
+                    //get values
+            
+            
+            
+            }
+            
+        
+        
+            function getInputVal(id){
+            return document.getElementById(id).value;
+            }
+        
+        
+        </script>
     </body>
 </html>
     

@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <title>High Tier Parking</title>
+        <link href = "AdminAccounts.css" rel = "stylesheet" type = "text/css">
+    </head>
+    <script>
+
+
+    </script>
+
+    <body>
+      <div class="backBtn">
+        <button type="button" id="backBtn" onclick="location.href='AdminLogin.htm'">Back</button>
+      </div>
+      <div class="logoTitleOne">
+      <p>High Tier</p>
+      </div>
+      <div class="logoTitleTwo">
+      <p>Parking</p>
+      </div>
+
+      <h1 class="adminAccountsTitle">Account Summary</h1>
+
+     <br>
+
+      <div class="accountData">
+        <style>
+          table.center {
+            margin-left: auto; 
+            margin-right: auto;
+          }
+        </style>
+        
+        <table class="accountDataTable">
+            <thead class="accountDataTableHead">
+              <tr class="accountDataTableHeaderRow">
+                  <th>License Plate No.</th>
+                  <th>Outstanding Balance</th>
+                  <th>Time Elapsed</th>
+
+              </tr>
+            </thead>
+            <tbody class="accountDataTable-Body" id="accountDataTableBody"></tbody>
+                         
+            
+
+        </table>
+        </div>
+
+        <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-database.js"></script>
+
+        <script>
+            src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js";
+            src="https://www.gstatic.com/firebasejs/9.6.10/firebase-auth.js";
+            const firebaseConfig = {
+            apiKey: "AIzaSyCIp4TEX0_gEB1bliF3RYdpBwXPBl7GBnY",
+            authDomain: "hightierparking2.firebaseapp.com",
+            databaseURL: "https://hightierparking2-default-rtdb.firebaseio.com",
+            projectId: "hightierparking2",
+            storageBucket: "hightierparking2.appspot.com",
+            messagingSenderId: "302319328733",
+            appId: "1:302319328733:web:427140dc9c7a50fa77ea34",
+            measurementId: "G-DKKY5VYY73"
+            };
+
+            firebase.initializeApp(firebaseConfig);
+            var db = firebase.firestore();
+            var database =firebase.database();
+            var auth =firebase.auth();
+          
+            var licensePlate;
+            var outstandingBalance;
+            var timeParked;
+
+            var rowCounter=0;
+            var lpCount=0;
+            var obCount=0;
+
+            var lpArray =[];
+            var obArray =[];
+            var tpArray=[[]];
+            //var accountData=[[]];
+            var accountData =[];
+
+            var userRef=db.collection("users").get().then((snapshot)=>{
+                snapshot.forEach(doc=>{
+                  var data={};
+                  var email = doc.data().Email;
+                  
+                  if(!(email.includes('admin'))){
+                    licensePlate=doc.data().LicensePlate;
+                    
+
+                    if(licensePlate!=null ){
+                      
+                      if(!(licensePlate.includes("No License Plate Added"))){
+                        lpArray[lpCount]=licensePlate;
+                        //document.getElementById('licensePlate').innerText=doc.data().LicensePlate;
+                      }  
+
+                    }
+                    outstandingBalance=doc.data().BalanceDue;
+
+                    if(outstandingBalance!=null ){
+                      obArray[obCount]=outstandingBalance;
+                      //document.getElementById('outstandingBalance').innerText=doc.data().BalanceDue;
+                      obCount=obCount+1;
+
+
+                    }
+                    timeParked=doc.data().ElapsedTime;
+                    if(timeParked!=null){
+                      tpArray[[lpCount-1]]=timeParked;
+                      //document.getElementById('outstandingBalance').innerText=doc.data().BalanceDue;
+                      
+
+
+                    }
+                    data.LicensePlate=licensePlate;
+                    data.BalanceDue=outstandingBalance;
+                    data.ElapsedTime=timeParked;
+
+
+
+                    //console.log(data);
+                    lpCount=lpCount+1;
+
+                    accountData[lpCount-1]=data
+
+                  }
+                
+
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  //counter=doc.data().counter;
+                  //console.log(licensePlateArray);
+                  //console.log(obArray);
+                  //console.log(tpArray);
+
+                })
+                console.log(accountData);
+                console.log(lpCount);
+                const tableBody = document.getElementById('accountDataTableBody');
+                let dataHtml='';
+
+                
+                for(let i=0; i<accountData.length; i++){
+                  //console.log(accountData[i])
+                  let data = accountData[i];
+                  //console.log(data);
+                  //console.log(data.LicensePlate);
+                  dataHtml+=`<tr><td>${data.LicensePlate}</td><td>${data.BalanceDue}</td><td>${data.ElapsedTime}</td></tr>`;
+
+                }
+                console.log(dataHtml)
+                tableBody.innerHTML=dataHtml;
+
+
+
+            })
+            //console.log(accountData);
+
+         
+          //loadTableData(accountData);
+          function loadTableData(accountData){
+
+            for(let data of accountData){
+              console.log(data.LicensePlate);
+              dataHtml+=`<tr><td>${data.LicensePlate}</td><td>${data.BalanceDue}</td><td>${data.ElapsedTime}</td></tr>`;
+            }
+            console.log(dataHtml)
+            tableBody.innerHTML=dataHtml;
+
+          }
+            
+          
+
+      </script>
+    </body>
+</html>
+    

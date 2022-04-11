@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <title>High Tier Parking</title>
+    <link href = "addPaymentMethod.css" rel = "stylesheet" type = "text/css">
+  </head>
+  <body>
+
+    <div class="backBtn">
+        <button type="button" id="backBtn" onclick="location.href='AccountInfo.htm'">Back</button>
+    </div>
+    <div class="logoTitleOne">
+        <p>High Tier</p>
+    </div>
+    <div class="logoTitleTwo">
+        <p>Parking</p>
+    </div>
+    <h1 class="accountInfoTitle">Add Payment Method</h1>
+    <br> <br>
+    <form name=addCreditCard id="addCreditCard">
+        <div class="creditCardNo">
+            <input type="text" id="creditCardNo" placeholder="Credit Card No.">
+        </div> <br>
+        <div class="cardCode">
+            <input type="text" id="cardCode" placeholder="Credit Card Code">
+        </div> <br>
+        <div class="expirationDate">
+            <input type="date" id="expirationDate">
+        </div> <br> <br>
+        
+            <div class="saveBtn">
+                <button type="submit" id="saveBtn" >Save</button>
+            </div> <br>
+        </form>
+        <div class="cancelBtn">
+            <button type="button" id="cancelBtn" onclick="">Cancel</button>
+        </div> <br>
+    
+  </body>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-database.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
+    <!--<script src="AccountInfo.js"></script>-->
+    <script>
+        src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js";
+        src="https://www.gstatic.com/firebasejs/9.6.10/firebase-auth.js";
+        const firebaseConfig = {
+            apiKey: "AIzaSyCIp4TEX0_gEB1bliF3RYdpBwXPBl7GBnY",
+            authDomain: "hightierparking2.firebaseapp.com",
+            databaseURL: "https://hightierparking2-default-rtdb.firebaseio.com",
+            projectId: "hightierparking2",
+            storageBucket: "hightierparking2.appspot.com",
+            messagingSenderId: "302319328733",
+            appId: "1:302319328733:web:427140dc9c7a50fa77ea34",
+            measurementId: "G-DKKY5VYY73"
+        };
+        
+
+        firebase.initializeApp(firebaseConfig);
+        var db = firebase.firestore();
+        var database = firebase.database();
+        var auth = firebase.auth();
+        //var userID=firebase.auth().currentUser.uid;
+        
+        //var licensePlate = document.getElementById(licensePlateNo).value;
+        auth.onAuthStateChanged(user=>{
+            //console.log(user);
+            if(user){
+                console.log('user logged in: ',user)
+                var userID=firebase.auth().currentUser.uid;
+                console.log(userID);
+                
+                                
+
+            }
+        })
+       
+        document.getElementById("addCreditCard").addEventListener("submit",submitform);
+        function submitform(e) {
+            e.preventDefault();
+            var userID=firebase.auth().currentUser.uid;
+            var creditCard = getInputVal('creditCardNo');
+            console.log(creditCard);
+
+            var userRef=db.collection("users").doc(userID).update({
+               PaymentCard: creditCard 
+            })
+           
+        }
+
+        function getInputVal(id){
+        return document.getElementById(id).value;
+        }
+
+
+    
+    </script>
+
+</html>

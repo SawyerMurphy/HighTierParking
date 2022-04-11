@@ -2,6 +2,13 @@ body {
     background-color: #f9f8fc;
 }
 
+.title {
+    text-align: center;
+    font-family: "Work Sans" ;
+    font-size: 60px;
+    color: rgb(134, 116, 150);
+}
+
 #backBtn {
     border-width: 1px;
     border-radius: 10px;
@@ -43,20 +50,6 @@ body {
     width: 150px;
 }
 
-
-.title {
-    text-align: center;
-    font-family: "Work Sans" ;
-    font-size: 60px;
-    color: rgb(134, 116, 150);
-}
-
-.guestInfo {
-    margin: auto;
-    width : 30%;
-    font-size: 20px;
-}
-
 .shilling {
     text-align: center;
     color: red;
@@ -67,3 +60,14 @@ body {
     display: inline-flex;
     margin-left: 35%;
   }
+  
+.payment {
+    margin: auto;
+    width: 10%;
+  }
+
+.billing {
+    margin: auto;
+    width: 10%;
+  }
+   
